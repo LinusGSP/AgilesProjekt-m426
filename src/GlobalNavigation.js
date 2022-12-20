@@ -21,7 +21,7 @@ class GlobalNavigation extends React.Component {
                     <a href="/User" class="link">User</a>
                     <a href="/about" class="link">About</a>
                 </div>
-                <div class="menu_icon">
+                <div class="menu_icon" onClick={""}>
                     <span class="icon"></span>
                 </div>
             </div>
