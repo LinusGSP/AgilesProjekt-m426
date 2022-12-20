@@ -37,6 +37,7 @@ public class ProjectController {
         return projectRepository.findByStatus(ACTIVE);
     }
 
+    /*
     //experimental!!!
     @PutMapping(path = "/{id}")
     public @ResponseBody ResponseEntity<String> updateProject(@RequestBody Project project, @PathVariable Integer id){
@@ -46,4 +47,5 @@ public class ProjectController {
         projectRepository.save(project);
         return ResponseEntity.status(200).body("User was succesfully updated");
     };
+     */
 }
