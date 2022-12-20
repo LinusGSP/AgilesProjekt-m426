@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import wiss.agile426.sprint01.Sprint01Application;
 import wiss.agile426.sprint01.model.Project;
 import wiss.agile426.sprint01.repository.ProjectRepository;
+import wiss.agile426.sprint01.repository.UserRepository;
 
 import javax.validation.Valid;
 
@@ -19,6 +20,7 @@ public class ProjectController {
 
     @Autowired
     private ProjectRepository projectRepository;
+    private UserRepository userRepository;
 
     @PostMapping(path = "")
     public @ResponseBody ResponseEntity<String> addProject(@Valid @RequestBody Project project){
@@ -34,4 +36,14 @@ public class ProjectController {
     public @ResponseBody Iterable<Project> getAllActiveProjects(){
         return projectRepository.findByStatus(ACTIVE);
     }
+
+    //experimental!!!
+    @PutMapping(path = "/{id}")
+    public @ResponseBody ResponseEntity<String> updateProject(@RequestBody Project project, @PathVariable Integer id){
+        Project updateProject = (Project) projectRepository.findByID(id);
+        updateProject.setUser(project.getUser());
+        userRepository.findByID(project.getUser().getId());
+        projectRepository.save(project);
+        return ResponseEntity.status(200).body("User was succesfully updated");
+    };
 }

@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface ProjectRepository extends JpaRepository<Project, Integer> {
     List<Project> findByStatus(Project.Status status);
+
+    List<Project> findByID(Integer id);
 }
