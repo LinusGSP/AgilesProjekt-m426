@@ -9,19 +9,19 @@ const columns = [
     field: 'Date',
     headerName: 'Date',
     type: 'date',
-    width: 100,
+    width: 150,
     editable: false,
   },
   {
     field: 'Project Name',
     headerName: 'Project name',
-    width: 150,
+    width: 200,
     editable: false,
   },
   {
     field: 'Description',
     headerName: 'Description',
-    width: 350,
+    width: 500,
     editable: false,
   },
   {

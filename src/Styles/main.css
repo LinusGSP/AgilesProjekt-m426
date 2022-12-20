@@ -6,9 +6,11 @@
     background-color: rgba(255, 255, 255, 0.899);
 }
 
-.projectTable .MuiDataGrid-columnHeader{
-    background-color: rgba(197, 199, 199, 0.899);
- 
+
+
+.projectTable .MuiDataGrid-columnHeaders{
+    background-color: rgba(220, 221, 221, 0.89);
+
 }
 
 .container-container{
