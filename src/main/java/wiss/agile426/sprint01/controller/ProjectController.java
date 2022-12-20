@@ -25,7 +25,7 @@ public class ProjectController {
     @PostMapping(path = "")
     public @ResponseBody ResponseEntity<String> addProject(@Valid @RequestBody Project project){
         projectRepository.save(project);
-        return ResponseEntity.status(200).body("Project was succesfully addet");
+        return ResponseEntity.status(200).body("Project was successfully added");
     }
     @GetMapping(path = "")
     public @ResponseBody Iterable<Project> getAllProjects(){
