@@ -1,6 +1,5 @@
-import logo from './images/logo.svg'
 import './Styles/App.css'
-import { Routes, Route, Outlet, BrowserRouter } from 'react-router-dom'
+import { Routes, Route, BrowserRouter } from 'react-router-dom'
 import React from 'react'
 
 import Home from './Pages/Home'
@@ -13,10 +12,11 @@ class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      logedIn : false,
+      logedIn : true,
       user_id: "",
       username: "",
-      rank: "COACH"
+      email:"",
+      name:"",
     }
     this.changeState = this.changeState.bind(this);
   }

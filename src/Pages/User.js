@@ -6,11 +6,17 @@ class User extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      logedIn: false,
-      user_id: '',
+      email: '',
+      name: '',
       username: '',
-      rank: 'COACH',
+      password: '',
+
+      usernameOrEmail:''
     }
+    this.handleEmail = this.handleEmail.bind(this);
+    this.handleName = this.handleName.bind(this);
+    this.handleUsername = this.handleUsername.bind(this);
+    this.handlePasswort = this.handlePasswort.bind(this);
   }
 
   componentDidMount() {
@@ -20,7 +26,6 @@ class User extends React.Component {
       rank: this.props.appState.rank,
     })
     this.swap();
-
 
     /**
      * Element to be changed come here ("titles", "rank-text" etc.)
@@ -32,6 +37,79 @@ class User extends React.Component {
    * Prefferably with a login fom
    */
 
+  
+
+  handleUsername(event){
+    this.setState({username: event.target.value });
+  }
+  handleName(event){
+    this.setState({name : event.target.value });
+  }
+  handleEmail(event){
+    this.setState({email: event.target.value });
+  }
+  handlePasswort(event){
+    this.setState({password: event.target.value });
+  }
+  handleSubmitChangeRegister(event){
+    // IDEA: ALERT FOR WHEN USER IS CREATED SUCCESSFULLY
+
+    event.preventDefault();
+
+    const requestOptions = {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(this.state.email, this.state.name, this.state.username, this.state.password)
+    }
+    fetch("http://localhost:8080/api/user/signup", requestOptions)
+    .then(response => response.json())
+    .then(json => {
+      var jsonAnsw = JSON.stringify(json);
+      alert(jsonAnsw);
+    })
+    this.resetForm();
+  }
+  handleSubmitChangeLogin(event){
+    const requestOptionsPost =  {
+      method:"POST",
+      headers: {"Content-Type":"application/json"},
+      body: JSON.stringify(this.state.email, this.state.username, this.state.password)
+    }
+
+    const requestOptionsGet = {
+      method:"GET",
+      headers:{"Content-Type":"application/json"},
+    }
+
+    fetch("http://localhost:8080/api/user/signin", requestOptionsPost)
+    .then(response => response)
+    .then(json =>{
+      var jsonAnsw = JSON.stringify(json);
+      if(json.status === 200){
+        alert(jsonAnsw);
+        fetch("http://localhost:8080/api/user/getByEmail="+this.state.email, requestOptionsGet)
+        .then(response => response.json())
+        .then(json => {
+          this.props.changeState({
+            logedIn: true,
+            user_is: json.id,
+            username: json.username,
+            name:json.name,
+            email:json.email
+          })
+        })
+      }
+    })
+  }
+
+  resetForm(){
+    this.setState({
+      email: '',
+      name: '',
+      username: '',
+      password: ''   
+    })
+  }
   swap = () => {
     const switchers = [...document.querySelectorAll('.switcher')]
 
@@ -46,10 +124,10 @@ class User extends React.Component {
   }
 
   render() {
-    if (this.state.logedIn === true) {
+    if (this.props.appState.logedIn === true) {
       return (
         <>
-          <h1>Welcome back {this.state.username}</h1>
+          <h1>Welcome back {this.props.appState.username}</h1>
         </>
       )
     } else {

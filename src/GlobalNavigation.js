@@ -14,7 +14,7 @@ class GlobalNavigation extends React.Component {
       <>
         <nav className='top'>
             <div class="menu">
-                <p class="website_name">LOGO</p>
+                <img src="src\Styles\Images\running.svg" class="website_name"></img>
                 <div class="menu_links">
                     <a href="/" class="link">Home</a>
                     <a href="/ProjectList" class="link">Projects</a>
