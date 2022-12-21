@@ -1,3 +1,4 @@
+import logo from './Styles/Images/Logo.png'
 import React from 'react'
 import { Link } from 'react-router-dom'
 
@@ -14,7 +15,7 @@ class GlobalNavigation extends React.Component {
       <>
         <nav className='top'>
             <div class="menu">
-                <img src="src\Styles\Images\running.svg" class="website_name"></img>
+                <img src={logo} className="log-img"></img>
                 <div class="menu_links">
                     <a href="/" class="link">Home</a>
                     <a href="/ProjectList" class="link">Projects</a>

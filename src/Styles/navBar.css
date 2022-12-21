@@ -19,9 +19,10 @@
     border-radius: 100%;
     backdrop-filter: blur(5px);
   }
-  .logo img {
-    width: 55%;
-    height: 55%;
+  .log-img {
+    margin-top: 2vh;
+    width: 25vh;
+    height: 10vh;
     transform: translateY(-1px);
     opacity: 0.8;
   }
