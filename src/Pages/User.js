@@ -6,17 +6,21 @@ class User extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      email: '',
-      name: '',
-      username: '',
-      password: '',
 
-      usernameOrEmail:''
+      user: {
+        email: '',
+        name: '',
+        username: '',
+        password: '',
+      }
     }
     this.handleEmail = this.handleEmail.bind(this);
     this.handleName = this.handleName.bind(this);
     this.handleUsername = this.handleUsername.bind(this);
     this.handlePasswort = this.handlePasswort.bind(this);
+    this.handleSubmitChangeLogin = this.handleSubmitChangeLogin.bind(this);
+    this.handleSubmitChangeRegister = this.handleSubmitChangeRegister.bind(this);
+    this.handleUsernameOrEmail = this.handleUsernameOrEmail.bind(this);
   }
 
   componentDidMount() {
@@ -40,16 +44,19 @@ class User extends React.Component {
   
 
   handleUsername(event){
-    this.setState({username: event.target.value });
+    this.setState({user:{username: event.target.value }});
+  }
+  handleUsernameOrEmail(event){
+    this.setState({usernameOrEmail: event.target.value });
   }
   handleName(event){
-    this.setState({name : event.target.value });
+    this.setState({user:{name : event.target.value }});
   }
   handleEmail(event){
-    this.setState({email: event.target.value });
+    this.setState({user:{email: event.target.value }});
   }
   handlePasswort(event){
-    this.setState({password: event.target.value });
+    this.setState({user:{password: event.target.value }});
   }
   handleSubmitChangeRegister(event){
     // IDEA: ALERT FOR WHEN USER IS CREATED SUCCESSFULLY
@@ -59,15 +66,17 @@ class User extends React.Component {
     const requestOptions = {
       method: "POST",
       headers: {"Content-Type": "application/json"},
-      body: JSON.stringify(this.state.email, this.state.name, this.state.username, this.state.password)
+      body: JSON.stringify(this.state.user)
     }
-    fetch("http://localhost:8080/api/user/signup", requestOptions)
+    fetch("http://127.0.0.1:8080/api/auth/signup", requestOptions)
     .then(response => response.json())
     .then(json => {
       var jsonAnsw = JSON.stringify(json);
+      if(json.status === 200){
+      alert("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+      }
       alert(jsonAnsw);
     })
-    this.resetForm();
   }
   handleSubmitChangeLogin(event){
     const requestOptionsPost =  {
@@ -81,13 +90,13 @@ class User extends React.Component {
       headers:{"Content-Type":"application/json"},
     }
 
-    fetch("http://localhost:8080/api/user/signin", requestOptionsPost)
+    fetch("http://127.0.0.1:8080/api/auth/signin", requestOptionsPost)
     .then(response => response)
     .then(json =>{
       var jsonAnsw = JSON.stringify(json);
       if(json.status === 200){
         alert(jsonAnsw);
-        fetch("http://localhost:8080/api/user/getByEmail="+this.state.email, requestOptionsGet)
+        fetch("http://127.0.0.1:8080/user/getByEmail="+this.state.email, requestOptionsGet)
         .then(response => response.json())
         .then(json => {
           this.props.changeState({
@@ -144,18 +153,18 @@ class User extends React.Component {
                   Login
                   <span class="underline"></span>
                 </button>
-                <form class="form form-login">
+                <form class="form form-login" onSubmit={this.handleSubmitChangeLogin}>
                   <fieldset>
                     <legend>
                       Please, enter your email and password for login.
                     </legend>
                     <div class="input-block">
                       <label for="login-email">E-Mail or Username</label>
-                      <input id="login-email" type="email" required />
+                      <input id="login-email" type="text" required value={this.state.usernameOrEmail} onChange={this.handleUsernameOrEmail}/>
                     </div>
                     <div class="input-block">
                       <label for="login-password">Password</label>
-                      <input id="login-password" type="password" required />
+                      <input id="login-password" type="password" required value={this.state.password} onChange={this.handlePasswort}/>
                     </div>
                   </fieldset>
                   <button type="submit" class="btn-login">
@@ -168,7 +177,7 @@ class User extends React.Component {
                   Sign Up
                   <span class="underline"></span>
                 </button>
-                <form class="form form-signup">
+                <form class="form form-signup" onSubmit={this.handleSubmitChangeRegister}>
                   <fieldset>
                     <legend>
                       Please, enter your email, password and password
@@ -176,19 +185,19 @@ class User extends React.Component {
                     </legend>
                     <div class="input-block">
                       <label for="signup-email">E-Mail</label>
-                      <input id="signup-email" type="email" required />
+                      <input id="signup-email" type="email" required value={this.state.user.email} onChange={this.handleEmail} />
                     </div>
                     <div class="input-block">
                       <label for="signup-username">Username</label>
-                      <input id="signup-username" type="text" required />
+                      <input id="signup-username" type="text" required value={this.state.user.username} onChange={this.handleUsername}/>
                     </div>
                     <div class="input-block">
                       <label for="signup-name">Name</label>
-                      <input id="signup-name" type="text" required />
+                      <input id="signup-name" type="text" required value={this.state.user.name} onChange={this.handleName}/>
                     </div>
                     <div class="input-block">
                       <label for="signup-password">Password</label>
-                      <input id="signup-password" type="password" required />
+                      <input id="signup-password" type="password" required value={this.state.user.password} onChange={this.handlePasswort}/>
                     </div>
 
                   </fieldset>
