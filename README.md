@@ -1,5 +1,3 @@
-# Agile246
-A School Project in Module 426 (Developing softawre with agile methods). Our Project is a web application made with ReactJS and MVN Springboot. 
 
 
 **MYSQL:**
