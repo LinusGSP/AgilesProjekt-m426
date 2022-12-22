@@ -8,10 +8,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import wiss.agile426.sprint01.model.Role;
 import wiss.agile426.sprint01.model.User;
 import wiss.agile426.sprint01.repository.RoleRepository;
@@ -39,6 +36,7 @@ import java.util.Collections;
  */
 
 @RestController
+@CrossOrigin
 @RequestMapping("/api/auth")
 public class AuthController {
 
@@ -56,11 +54,17 @@ public class AuthController {
 
     @PostMapping("/signin")
     public ResponseEntity<String> authenticateUser(@RequestBody LoginDto loginDto){
+
+        try {
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
                 loginDto.getUsernameOrEmail(), loginDto.getPassword()));
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+            return new ResponseEntity<>("Signed-in successfully!.", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Sign-in failed!.", HttpStatus.BAD_REQUEST);
 
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        return new ResponseEntity<>("User signed-in successfully!.", HttpStatus.OK);
+        }
+
     }
 
     @PostMapping("/signup")
@@ -83,12 +87,20 @@ public class AuthController {
         user.setEmail(signUpDto.getEmail());
         user.setPassword(passwordEncoder.encode(signUpDto.getPassword()));
 
-        Role roles = roleRepository.findByName("ROLE_ADMIN").get();
-        user.setRoles(Collections.singleton(roles));
+        try {
+            // "ROLE_ADMIN" or "ROLE_USER"
+            Role roles = roleRepository.findByName(signUpDto.getRole()).get();
+            user.setRoles(Collections.singleton(roles));
+        } catch (Exception e) {
+            return new ResponseEntity<>("Role not found!", HttpStatus.BAD_REQUEST);
+        }
 
-        userRepository.save(user);
-
-        return new ResponseEntity<>("User registered successfully", HttpStatus.OK);
+        try {
+            userRepository.save(user);
+            return new ResponseEntity<>("User registered successfully!", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>("User registration failed!", HttpStatus.BAD_REQUEST);
+        }
 
     }
 }

@@ -2,7 +2,17 @@ package wiss.agile426.sprint01.security;
 
 public class SignUpDto {
     private String name;
+    private String username;
+    private String email;
+    private String password;
+    private String role;
 
+    public String getRole() {
+        return role;
+    }
+    public void setRole(String role) {
+        this.role = role;
+    }
     public String getName() {
         return name;
     }
@@ -35,7 +45,5 @@ public class SignUpDto {
         this.password = password;
     }
 
-    private String username;
-    private String email;
-    private String password;
+
 }
