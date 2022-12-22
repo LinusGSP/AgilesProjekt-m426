@@ -8,7 +8,6 @@ class ProjectList extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-    
       rows:
       [{
         id: 1,
