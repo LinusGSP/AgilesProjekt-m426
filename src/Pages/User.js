@@ -6,35 +6,21 @@ class User extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      user: {
-        email: '',
-        name: '',
-        username: '',
-        password: '',
-        rank: '',
-      },
-      userlogin: {
-        usernameOrEmail: '',
-        password: '',
-      },
+    
     }
     this.handleEmail = this.handleEmail.bind(this)
     this.handleName = this.handleName.bind(this)
     this.handleUsername = this.handleUsername.bind(this)
     this.handlePasswort = this.handlePasswort.bind(this)
     this.handleUsernameOrEmail = this.handleUsernameOrEmail.bind(this)
-    this.handleRank = this.handleRank.bind(this)
+    this.handleRole = this.handleRole.bind(this)
 
     this.handleSubmitChangeLogin = this.handleSubmitChangeLogin.bind(this)
     this.handleSubmitChangeRegister = this.handleSubmitChangeRegister.bind(this)
   }
 
   componentDidMount() {
-    this.setState({
-      id: this.props.appState.user_id,
-      username: this.props.appState.name,
-      rank: this.props.appState.rank,
-    })
+    this.setState({})
     this.swap()
 
     /**
@@ -49,9 +35,7 @@ class User extends React.Component {
 
   handleUsername(event) {
     this.setState({
-      user: {
-        username: event.target.value,
-      },
+      username: event.target.value,
     })
   }
   handleUsernameOrEmail(event) {
@@ -59,38 +43,28 @@ class User extends React.Component {
   }
   handleName(event) {
     this.setState({
-      user: {
+
         name: event.target.value,
-      },
     })
   }
   handleEmail(event) {
     this.setState({
-      user: {
-        email: event.target.value,
-      },
+      email: event.target.value,
     })
   }
   handlePasswort(event) {
     this.setState({
-      user: {
-        password: event.target.value,
-      },
+      password: event.target.value,
     })
   }
 
-  handleRank(event){
+  handleRole(event) {
     this.setState({
-      user:{
-        rank: event.target.value,
-      }
+      role: event.target.value,
     })
   }
-
 
   handleSubmitChangeRegister(event) {
-    // IDEA: ALERT FOR WHEN USER IS CREATED SUCCESSFULLY
-
     event.preventDefault()
 
     const requestOptions = {
@@ -101,6 +75,7 @@ class User extends React.Component {
     fetch('http://127.0.0.1:8080/api/auth/signup', requestOptions)
       .then((response) => response)
       .then((json) => {
+        const jsonAnsw = JSON.stringify(json)
         if (json.status === 200) {
           alert(
             'Your Account was successfully created. Pls continue to the Login.',
@@ -108,13 +83,17 @@ class User extends React.Component {
         } else if (json.status === 500) {
           alert('Internal Server Error. Try again or contact the support')
         }
+        const test = JSON.stringify(this.state)
+        alert(test)
       })
   }
   handleSubmitChangeLogin(event) {
+    event.preventDefault();
+
     const requestOptionsPost = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(this.state.user),
+      body: JSON.stringify(this.state),
     }
 
     const requestOptionsGet = {
@@ -127,31 +106,16 @@ class User extends React.Component {
       .then((json) => {
         var jsonAnsw = JSON.stringify(json)
         if (json.status === 200) {
-          alert(jsonAnsw)
-          /* FETCH TO GET USER DATA AFTER LOGIN
-        fetch("http://127.0.0.1:8080/user/getByEmail="+this.state.email, requestOptionsGet)
-        .then(response => response.json())
-        .then(json => {
           this.props.changeState({
-            logedIn: true,
-            user_is: json.id,
-            username: json.username,
-            name:json.name,
-            email:json.email
+            logedIn: true
           })
-        })*/
+        }
+        else{
+          alert("An error Occurred. Unfortunately we aren't able to help you...")
         }
       })
   }
-
-  resetForm() {
-    this.setState({
-      email: '',
-      name: '',
-      username: '',
-      password: '',
-    })
-  }
+  //Needs udate
   swap = () => {
     const switchers = [...document.querySelectorAll('.switcher')]
 
@@ -170,6 +134,9 @@ class User extends React.Component {
       return (
         <>
           <h1>Welcome back {this.props.appState.username}</h1>
+
+          
+
         </>
       )
     } else {
@@ -200,7 +167,7 @@ class User extends React.Component {
                         id="login-email"
                         type="text"
                         required
-                        value={this.state.userlogin.usernameOrEmail}
+                        value={this.state.usernameOrEmail}
                         onChange={this.handleUsernameOrEmail}
                       />
                     </div>
@@ -210,7 +177,7 @@ class User extends React.Component {
                         id="login-password"
                         type="password"
                         required
-                        value={this.state.userlogin.password}
+                        value={this.state.password}
                         onChange={this.handlePasswort}
                       />
                     </div>
@@ -240,7 +207,7 @@ class User extends React.Component {
                         id="signup-email"
                         type="email"
                         required
-                        value={this.state.user.email}
+                        value={this.state.email}
                         onChange={this.handleEmail}
                       />
                     </div>
@@ -250,7 +217,7 @@ class User extends React.Component {
                         id="signup-username"
                         type="text"
                         required
-                        value={this.state.user.username}
+                        value={this.state.username}
                         onChange={this.handleUsername}
                       />
                     </div>
@@ -260,7 +227,7 @@ class User extends React.Component {
                         id="signup-name"
                         type="text"
                         required
-                        value={this.state.user.name}
+                        value={this.state.name}
                         onChange={this.handleName}
                       />
                     </div>
@@ -270,19 +237,18 @@ class User extends React.Component {
                         id="signup-password"
                         type="password"
                         required
-                        value={this.state.user.password}
+                        value={this.state.password}
                         onChange={this.handlePasswort}
                       />
                     </div>
-                    <div class="input-block">
+                    <div class="input-block" onChange={this.handleRole}>
                       <label for="Coach">Coach</label>
                       <input
                         name="select-rank"
                         id="Coach"
                         type="radio"
                         required
-                        value="USER_OWNER"
-                        onSelect={this.handleRank}
+                        value="ROLE_COACH"
                       />
                       <label for="Anbieter">Typ</label>
                       <input
@@ -290,8 +256,7 @@ class User extends React.Component {
                         id="Anbieter"
                         type="radio"
                         required
-                        value="USER_COACH"
-                        onSelect={this.handleRank}
+                        value="ROLE_OWNER"
                       />
                     </div>
                   </fieldset>

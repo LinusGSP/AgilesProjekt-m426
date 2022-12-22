@@ -13,10 +13,6 @@ class App extends React.Component {
     super(props)
     this.state = {
       logedIn : false,
-      user_id: "",
-      username: "",
-      email:"",
-      name:"",
     }
     this.changeState = this.changeState.bind(this);
   }

@@ -15,71 +15,71 @@ class NotFound extends React.Component{
 
         return (
             <>  
-                <div class="about">
-            <a class="bg_links social portfolio" href="https://www.rafaelalucas.com" target="_blank">
-                <span class="icon"></span>
+                <div className="about">
+            <a className="bg_links social portfolio" href="https://www.rafaelalucas.com" target="_blank">
+                <span className="icon"></span>
             </a>
-            <a class="bg_links social dribbble" href="https://dribbble.com/rafaelalucas" target="_blank">
-                <span class="icon"></span>
+            <a className="bg_links social dribbble" href="https://dribbble.com/rafaelalucas" target="_blank">
+                <span className="icon"></span>
             </a>
-            <a class="bg_links social linkedin" href="https://www.linkedin.com/in/rafaelalucas/" target="_blank">
-                <span class="icon"></span>
+            <a className="bg_links social linkedin" href="https://www.linkedin.com/in/rafaelalucas/" target="_blank">
+                <span className="icon"></span>
             </a>
-            <a class="bg_links logo"></a>
+            <a className="bg_links logo"></a>
             </div>
 
             <nav>
-            <div class="menu">           
-             <p class="website_name">LOGO</p>
-                <div class="menu_links">
-                    <a href="/" class="link">Home</a>
-                    <a href="/ProjectList" class="link">Projects</a>
-                    <a href="/User" class="link">User</a>
-                    <a href="/about" class="link">About</a>
+            <div className="menu">           
+             <p className="website_name">LOGO</p>
+                <div className="menu_links">
+                    <a href="/" className="link">Home</a>
+                    <a href="/ProjectList" className="link">Projects</a>
+                    <a href="/User" className="link">User</a>
+                    <a href="/about" className="link">About</a>
                 </div>
-                <div class="menu_icon">
-                    <span class="icon"></span>
+                <div className="menu_icon">
+                    <span className="icon"></span>
                 </div>
             </div>
             </nav>
 
 
-            <section class="wrapper">
-            <div class="container">
-                <div id="scene" class="scene" data-hover-only="false">
+            <section className="wrapper">
+            <div className="container">
+                <div id="scene" className="scene" data-hover-only="false">
 
-                    <div class="circle" data-depth="1.2"></div>
+                    <div className="circle" data-depth="1.2"></div>
 
-                    <div class="one" data-depth="0.9">
-                        <div class="content">
-                        <span class="piece"></span>
-                        <span class="piece"></span>
-                        <span class="piece"></span>
+                    <div className="one" data-depth="0.9">
+                        <div className="content">
+                        <span className="piece"></span>
+                        <span className="piece"></span>
+                        <span className="piece"></span>
                         </div>
                     </div>
 
-                    <div class="two" data-depth="0.60">
-                        <div class="content">
-                        <span class="piece"></span>
-                        <span class="piece"></span>
-                        <span class="piece"></span>
+                    <div className="two" data-depth="0.60">
+                        <div className="content">
+                        <span className="piece"></span>
+                        <span className="piece"></span>
+                        <span className="piece"></span>
                         </div>
                     </div>
 
-                    <div class="three" data-depth="0.40">
-                        <div class="content">
-                        <span class="piece"></span>
-                        <span class="piece"></span>
-                        <span class="piece"></span>
+                    <div className="three" data-depth="0.40">
+                        <div className="content">
+                        <span className="piece"></span>
+                        <span className="piece"></span>
+                        <span className="piece"></span>
                         </div>
                     </div>
 
-                    <p class="p404" data-depth="0.50">404</p>
-                    <p class="p404" data-depth="0.10">404</p>
+                    <p className="p404" data-depth="0.50">404</p>
+                    <p className="p404" data-depth="0.10">404</p>
 
                 </div>
 
-                <div class="text">
+                <div classNameName="text">
                     <article>
                         <p>Uh oh! Looks like you got lost. <br />Go back to the homepage if you dare!</p>
                         <button><a href='/'>Go back Home</a></button>
