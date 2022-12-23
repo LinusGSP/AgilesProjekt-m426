@@ -14,13 +14,12 @@ import static wiss.agile426.sprint01.model.Project.Status.*;
 
 @CrossOrigin
 @RestController
-@RequestMapping(path = "/api/project/")
+@RequestMapping(path = "api/project/")
 public class ProjectController {
     Sprint01Application application;
 
     @Autowired
     private ProjectRepository projectRepository;
-    private UserRepository userRepository;
 
     @PostMapping(path = "")
     public @ResponseBody ResponseEntity<String> addProject(@Valid @RequestBody Project project){
@@ -36,16 +35,4 @@ public class ProjectController {
     public @ResponseBody Iterable<Project> getAllActiveProjects(){
         return projectRepository.findByStatus(ACTIVE);
     }
-
-    /*
-    //experimental!!!
-    @PutMapping(path = "/{id}")
-    public @ResponseBody ResponseEntity<String> updateProject(@RequestBody Project project, @PathVariable Integer id){
-        Project updateProject = (Project) projectRepository.findByID(id);
-        updateProject.setUser(project.getUser());
-        userRepository.findByID(project.getUser().getId());
-        projectRepository.save(project);
-        return ResponseEntity.status(200).body("User was succesfully updated");
-    };
-     */
 }

@@ -27,6 +27,9 @@ public class Project {
     @CreationTimestamp
     private Date date;
 
+    @Column(name = "name", nullable = false, updatable = false)
+    private String name;
+
 
     // This user is the Coach
     @ManyToOne(cascade = CascadeType.ALL)
@@ -56,6 +59,9 @@ public class Project {
     public void setStatus(Status status) {
         this.status = status;
     }
+    public void setName(String name){
+        this.name = name;
+    }
 
     //GETTER
     public Date getDate() {
@@ -72,6 +78,9 @@ public class Project {
     }
     public String getStatus(){
         return status.toString();
+    }
+    public String getName(){
+        return name;
     }
 
 }
