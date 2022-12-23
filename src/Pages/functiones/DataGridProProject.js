@@ -4,29 +4,30 @@ import Box from '@mui/material/Box'
 import { DataGrid } from '@mui/x-data-grid'
 
 const columns = [
-  { field: 'id', headerName: 'ID', width: 10 },
+  { field: 'id', headerName: 'id', width: 10 },
+  { field: 'user_name', headerName: 'user_name', width: 200, editable: false },
   {
     field: 'Date',
     headerName: 'Date',
     type: 'date',
-    width: 150,
-    editable: false,
-  },
-  {
-    field: 'Project Name',
-    headerName: 'Project name',
     width: 200,
     editable: false,
   },
   {
-    field: 'Description',
-    headerName: 'Description',
+    field: 'description',
+    headerName: 'description',
     width: 500,
     editable: false,
   },
   {
-    field: 'Status',
-    headerName: 'Status',
+    field: 'name',
+    headerName: 'name',
+    width: 200,
+    editable: false,
+  },
+  {
+    field: 'status',
+    headerName: 'status',
     width: 150,
     editable: false,
   }
