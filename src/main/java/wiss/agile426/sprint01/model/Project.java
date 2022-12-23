@@ -29,9 +29,8 @@ public class Project {
 
 
     // This user is the Coach
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
-    private User user;
+    @Column(name = "name")
+    private String name;
     @Column(name = "description")
     private String description;
 
@@ -39,6 +38,24 @@ public class Project {
     @Enumerated(EnumType.STRING)
     private Status status;
 
+    @Column(name = "user_name")
+    private String coach;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getCoach() {
+        return coach;
+    }
+
+    public void setCoach(String coach) {
+        this.coach = coach;
+    }
 
     //Setter
     public void setId(Integer id) {
@@ -46,9 +63,6 @@ public class Project {
     }
     public void setDate(Date date) {
         this.date = date;
-    }
-    public void setUser(User user) {
-        this.user = user;
     }
     public void setDescription(String description) {
         this.description = description;
@@ -66,9 +80,6 @@ public class Project {
     }
     public Integer getId() {
         return id;
-    }
-    public User getUser() {
-        return user;
     }
     public String getStatus(){
         return status.toString();
