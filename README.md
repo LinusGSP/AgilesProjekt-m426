@@ -12,6 +12,10 @@ INSERT INTO roles (name) VALUES ("ROLE_ADMIN");
 INSERT INTO roles (name) VALUES ("ROLE_COACH");
 INSERT INTO roles (name) VALUES ("ROLE_OWNER");
 ```
+**Test Data**
+```
+INSERT INTO project (coach, date, description, name, status) VALUES ("Bob", "2022-12-23", "This is a Description", "Project M1337", "ACTIVE"); 
+```
 
 **Insomnia:**
 
