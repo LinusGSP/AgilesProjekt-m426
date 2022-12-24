@@ -25,7 +25,8 @@ POST: http://127.0.0.1:8080/api/auth/signup
         "name": "Bob Bobison",
         "username": "xXbob69Xx",
         "email": "b123ob@bob.ch",
-        "password": "secretbob"
+        "password": "secretbob",
+        "role":"ROLE_COACH"
 }
 ```
 
@@ -51,3 +52,5 @@ POST: http://127.0.0.1:8080/api/project/
         "status":"ACTIVE"
 }
 ```
+
+GET: http://127.0.0.1:8080/api/project/
