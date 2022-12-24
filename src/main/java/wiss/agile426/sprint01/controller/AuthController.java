@@ -17,23 +17,7 @@ import wiss.agile426.sprint01.security.LoginDto;
 import wiss.agile426.sprint01.security.SignUpDto;
 
 import java.util.Collections;
-
-/**
- * @Insomnia: POST http://127.0.0.1:8080/api/auth/signup
- *        {
- * 			"name": "Bob Bobison",
- * 			"username": "xXbob69Xx",
- * 		  "email": "b123ob@bob.ch",
- * 		  "password": "secretbob"
- *    }
- *
- *
- * @Insomnia: POST http://127.0.0.1:8080/api/auth/signin
- *        {
- * 			"usernameOrEmail": "xXbo1b69Xx",
- * 		  "password": "secretbob"
- *    }
- */
+import java.util.Optional;
 
 @RestController
 @CrossOrigin
@@ -62,9 +46,7 @@ public class AuthController {
             return new ResponseEntity<>("Signed-in successfully!.", HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>("Sign-in failed!.", HttpStatus.BAD_REQUEST);
-
         }
-
     }
 
     @PostMapping("/signup")

@@ -13,8 +13,7 @@ import java.util.Set;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Integer id;
+    private long id;
 
     @Column(name = "name", length = 24)
     private String name;
@@ -34,7 +33,7 @@ public class User {
     @JoinTable(name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
-    private Set<Role> roles = new HashSet<>();
+    private Set<Role> roles;
 
 
     //SETTER
@@ -50,8 +49,6 @@ public class User {
     public void setUsername(String username) {
         this.username = username;
     }
-    public void setRoles(Set<Role> singleton) {
-    }
 
     //GETTER
     public String getPassword() {
@@ -66,12 +63,17 @@ public class User {
     public String getUsername() {
         return username;
     }
-    public Integer getId() {
+    public long getId() {
         return id;
     }
-    public void setId(Integer id) {
+    public void setId(long id) {
         this.id = id;
     }
+
+    public void setRoles(Set<Role> singleton) {
+        this.roles = singleton;
+    }
+
     public Set<Role> getRoles() {
         return roles;
     }

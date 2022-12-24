@@ -15,8 +15,7 @@ public class Project {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Integer id;
+    private long id;
     @Column(name = "name")
     private String name;
     @Column(name = "description")
@@ -33,7 +32,7 @@ public class Project {
     private String coach;
 
     //Setter
-    public void setId(Integer id) {
+    public void setId(long id) {
         this.id = id;
     }
     public void setDate(Date date) {
@@ -59,7 +58,7 @@ public class Project {
     public String getDescription(){
         return description;
     }
-    public Integer getId() {
+    public long getId() {
         return id;
     }
     public String getStatus(){
