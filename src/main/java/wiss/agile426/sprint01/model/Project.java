@@ -24,11 +24,8 @@ public class Project {
     private Integer id;
 
     @Column(name = "date", nullable = false, updatable = false)
-    @CreationTimestamp
     private Date date;
 
-
-    // This user is the Coach
     @Column(name = "name")
     private String name;
     @Column(name = "description")

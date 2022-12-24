@@ -37,15 +37,4 @@ public class ProjectController {
         return projectRepository.findByStatus(ACTIVE);
     }
 
-    /*
-    //experimental!!!
-    @PutMapping(path = "/{id}")
-    public @ResponseBody ResponseEntity<String> updateProject(@RequestBody Project project, @PathVariable Integer id){
-        Project updateProject = (Project) projectRepository.findByID(id);
-        updateProject.setUser(project.getUser());
-        userRepository.findByID(project.getUser().getId());
-        projectRepository.save(project);
-        return ResponseEntity.status(200).body("User was succesfully updated");
-    };
-     */
 }
