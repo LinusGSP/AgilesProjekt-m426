@@ -47,9 +47,11 @@ http://127.0.0.1:8080/api/auth/logout
 POST: http://127.0.0.1:8080/api/project/
 ```
 {
+        "name":"Test Project"
         "date":"2022-01-01",
         "description":"Test Description",
         "status":"ACTIVE"
+        "coach":"Bob"
 }
 ```
 
