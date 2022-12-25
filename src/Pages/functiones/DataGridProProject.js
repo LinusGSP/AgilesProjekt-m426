@@ -7,7 +7,7 @@ const columns = [
   { field: 'id', headerName: 'ID', width: 10 },
   {
     field: 'date',
-    headerName: 'Date',
+    headerName: 'date',
     type: 'date',
     width: 200,
     editable: false,
@@ -26,7 +26,7 @@ const columns = [
   },
   {
     field: 'status',
-    headerName: 'Status',
+    headerName: 'status',
     width: 150,
     editable: false,
   },
@@ -43,7 +43,7 @@ export default function DataGridProProject(props) {
     <Box sx={{ 
       height: 400, 
       m:2,
-      '& .super-app-theme--AVAILABLE': {
+      '& .super-app-theme--ACTIVE': {
         bgcolor: "#AAF683"
       },
       '& .super-app-theme--PENDING': {
@@ -62,7 +62,7 @@ export default function DataGridProProject(props) {
         rowsPerPageOptions={[5]}
         disableSelectionOnClick
         experimentalFeatures={{ newEditingApi: true }}
-        getRowClassName={(props) => `super-app-theme--${props.row.Status}`}
+        getRowClassName={(props) => `super-app-theme--${props.row.status}`}
       />
     </Box>
   )

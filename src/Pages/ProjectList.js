@@ -11,7 +11,6 @@ class ProjectList extends React.Component {
       rows: []
     }
   }
-
   componentDidMount(){
     this.getTableData();
   }
@@ -30,7 +29,6 @@ class ProjectList extends React.Component {
    fetch("http://127.0.0.1:8080/api/project/", requestOptions)
    .then(response => response.json())
     .then(data => {
-      console.log(data)
       this.setState({rows:data})
     })
   }
