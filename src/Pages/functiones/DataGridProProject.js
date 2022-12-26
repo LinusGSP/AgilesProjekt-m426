@@ -31,7 +31,7 @@ const columns = [
     editable: false,
   },
   {
-    field: 'coach',
+    field: 'user_id',
     headerName: 'Coach',
     width: 200,
     editable: false
