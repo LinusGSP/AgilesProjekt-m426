@@ -8,14 +8,14 @@ class ProjectList extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      rows: {
+      rows: [{
         date: '',
         description: '',
         id: '',
         name: '',
         status: '',
-        user_id: '',
-      },
+        coach: '',
+      }],
     }
   }
   componentDidMount() {
@@ -34,9 +34,17 @@ class ProjectList extends React.Component {
     fetch('http://127.0.0.1:8080/api/project/', requestOptions)
       .then((response) => response.json())
       .then((data) => {
-        console.log(...data);
         this.setState({
-          rows: data
+          rows: data.map((o) => {
+            return {
+              coach: o.coach.name,
+              date: o.date,
+              description: o.description,
+              id: o.id,
+              name: o.name,
+              status: o.status
+            }
+          })
         })
       })
   }
