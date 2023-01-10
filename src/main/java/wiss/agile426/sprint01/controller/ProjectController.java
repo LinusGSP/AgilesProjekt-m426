@@ -12,8 +12,6 @@ import javax.validation.Valid;
 
 import static wiss.agile426.sprint01.model.Project.Status.*;
 
-import java.util.List;
-
 @CrossOrigin
 @RestController
 @RequestMapping(path = "/api/project/")
@@ -39,11 +37,4 @@ public class ProjectController {
         return projectRepository.findByStatus(ACTIVE);
     }
 
-    @PutMapping(path = "")
-    public @ResponseBody ResponseEntity<String> addCoach(@RequestBody @Valid Project newProject){
-        Project project = projectRepository.findById(newProject.id).get(0);
-        project.setCoach(newProject.coach);
-        
-        return null;
-    }
 }
