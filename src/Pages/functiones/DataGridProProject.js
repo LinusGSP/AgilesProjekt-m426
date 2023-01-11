@@ -6,20 +6,41 @@ import { DataGrid } from '@mui/x-data-grid'
 
 
 const handleRowCLick = (params) => {
-  const result = window.confirm("This is an Alert for the Project u just clicked. To be coming: More information about the Project(long description)"
-    + "if u want to sign up for the Project press 'OK', else press 'Cancel'");
+  const result = window.confirm("Do you want to Coach this Project?");
 
   if (result) {
     window.alert("Thank u for Accepting this Project");
     /**
      * CREATE THE FETCH TO UPDATE THE PROJECT TABLE WITH NEW COACH!
      **/
+    function updateProject() {
+      const requestOptions = {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Acces-Control-Allow-Origin': '*',
+        },
+        body: JSON.stringify({
+          id: params.id,
+          name: params.name,
+          description: params.description,
+          date: params.date,
+          status: params.status,
+        })
+      }
+      fetch('http://127.0.0.1:8080/api/project/update', requestOptions)
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data)
+        })
+    }
+    updateProject()
   } else {
-    window.alert("Ok, maybe the next project is better");
+    window.alert("You have declined this Project");
   }
 }
 
-
+      
 const renderDetailsButton = (params) => {
   return (
     <strong>
