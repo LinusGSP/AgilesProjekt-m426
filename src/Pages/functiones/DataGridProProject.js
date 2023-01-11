@@ -4,6 +4,30 @@ import Box from '@mui/material/Box'
 import Alert from '@mui/material/Alert'
 import { DataGrid } from '@mui/x-data-grid'
 
+
+const handleRowCLick = (params) => {
+  const result = window.confirm("This is an Alert for the Project u just clicked. To be coming: More information about the Project(long description)"
+    + "if u want to sign up for the Project press 'OK', else press 'Cancel'");
+
+  if (result) {
+    window.alert("Thank u for Accepting this Project");
+    /**
+     * CREATE THE FETCH TO UPDATE THE PROJECT TABLE WITH NEW COACH!
+     **/
+  } else {
+    window.alert("Ok, maybe the next project is better");
+  }
+}
+
+
+const renderDetailsButton = (params) => {
+  return (
+    <strong>
+      <button style={{ padding: "10px" }} onClick={handleRowCLick}>My name jeff</button>
+    </strong >
+  )
+}
+
 const columns = [
   { field: 'id', headerName: 'ID', width: 10 },
   {
@@ -37,22 +61,17 @@ const columns = [
     width: 200,
     editable: false,
   },
+  {
+    field: 'hahahah',
+    headerName: 'lombok virus',
+    width: 100,
+    renderCell: renderDetailsButton,
+    disableClickEventBubbling: true,
+  }
 ]
 
 export default function DataGridProProject(props) {
-  const handleRowCLick = (params) => {
-    const result = window.confirm("This is an Alert for the Project u just clicked. To be coming: More information about the Project(long description)"
-    +"if u want to sign up for the Project press 'OK', else press 'Cancel'");
-    
-    if(result){
-      window.alert("Thank u for Accepting this Project");
-      /**
-       * CREATE THE FETCH TO UPDATE THE PROJECT TABLE WITH NEW COACH!
-       */
-    }else{
-      window.alert("Ok, maybe the next project is better");
-    }
-  }
+
   return (
     <Box
       sx={{
@@ -70,7 +89,6 @@ export default function DataGridProProject(props) {
       }}
     >
       <DataGrid
-        onRowClick={handleRowCLick}
         rows={props.rows}
         columns={columns}
         pageSize={25}
