@@ -15,9 +15,9 @@ public class Project {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    public long id;
     @Column(name = "name")
-    private String name;
+    public String name;
     @Column(name = "description")
     private String description;
 
@@ -30,7 +30,7 @@ public class Project {
 
     @ManyToOne(fetch = FetchType.EAGER, optional = true)
     @JoinColumn(name = "coach", nullable = true)
-    private User coach;
+    public User coach;
 
     //Setter
     public void setId(long id) {

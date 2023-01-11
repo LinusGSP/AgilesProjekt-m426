@@ -37,4 +37,13 @@ public class ProjectController {
         return projectRepository.findByStatus(ACTIVE);
     }
 
+    @PutMapping(path = "")
+    public @ResponseBody ResponseEntity<String> updateProject(@RequestBody Project newProject){
+        Project project = projectRepository.findById(newProject.id).get(0);
+        
+        project.setCoach(newProject.coach);
+
+        return ResponseEntity.status(200).body("Successfully addet a Coach to Project: " + newProject.id + "---"+ newProject.name+". New Coach:" + projectRepository.findById(newProject.coach.id).get(0).getId());
+    }
+
 }
