@@ -1,8 +1,12 @@
 import React from 'react'
 
 import DemoGridProject from './functiones/DataGridProProject'
+import ModalDialog from './functiones/ModalDialog'
+import '../../node_modules/bootstrap/dist/css/bootstrap.min.css'
+
 
 import '../Styles/main.css'
+
 
 class ProjectList extends React.Component {
   constructor(props) {
@@ -50,6 +54,7 @@ class ProjectList extends React.Component {
       }).then(console.log(this.state))
   }
 
+
   render() {
     return (
       <>
@@ -57,6 +62,7 @@ class ProjectList extends React.Component {
         <div className="projectTable">
           <DemoGridProject rows={this.state.rows} />
         </div>
+        <ModalDialog />
       </>
     )
   }
