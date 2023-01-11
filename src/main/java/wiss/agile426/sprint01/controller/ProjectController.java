@@ -2,6 +2,7 @@ package wiss.agile426.sprint01.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -48,15 +49,19 @@ public class ProjectController {
 
     @PutMapping(path = "/update")
     @ResponseBody
-    public String updateProject(@RequestBody Project newProject){
+    public ResponseEntity<String> updateProject(@RequestBody Project newProject){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Project project = projectRepository.findById(newProject.id);
         String coach = auth.getName();
         User user = userRepository.findByEmail(coach).orElseThrow(Error::new);
 
+        project.setName(newProject.getName());
+        project.setDescription(newProject.getDescription());
+        project.setDate(newProject.getDate());
+        project.setStatus(newProject.getStatus());
         project.setCoach(user.getUsername());
+        projectRepository.save(project);
 
-        return project.getCoach();
+        return ResponseEntity.accepted().body("Thank you " + user.getUsername() + " for signing up to coach " + project.getName());
     }
-
 }

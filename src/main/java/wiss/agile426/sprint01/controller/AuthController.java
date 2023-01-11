@@ -70,7 +70,7 @@ public class AuthController {
         user.setPassword(passwordEncoder.encode(signUpDto.getPassword()));
 
         try {
-            // "ROLE_ADMIN", "ROLE_OWNER", "ROLE_COACH"
+            // "ROLE_OWNER", "ROLE_COACH"
             Role roles = roleRepository.findByName(signUpDto.getRole()).get();
             user.setRoles(Collections.singleton(roles));
         } catch (Exception e) {

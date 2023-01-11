@@ -63,8 +63,8 @@ public class Project {
     public long getId() {
         return id;
     }
-    public String getStatus(){
-        return status.toString();
+    public Status getStatus() {
+        return status;
     }
     public String getCoach() {
         return coach;
