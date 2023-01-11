@@ -1,4 +1,3 @@
-import { useGridEditing_old } from '@mui/x-data-grid/internals'
 import React from 'react'
 
 import '../Styles/form.css'
@@ -76,7 +75,6 @@ class User extends React.Component {
     fetch('http://127.0.0.1:8080/api/auth/signup', requestOptions)
       .then((response) => response)
       .then((json) => {
-        const jsonAnsw = JSON.stringify(json)
         if (json.status === 200) {
           alert(
             'Your Account was successfully created. Pls continue to the Login.',
@@ -97,15 +95,9 @@ class User extends React.Component {
       body: JSON.stringify(this.state),
     }
 
-    const requestOptionsGet = {
-      method: 'GET',
-      headers: { 'Content-Type': 'application/json' },
-    }
-
     fetch('http://127.0.0.1:8080/api/auth/signin', requestOptionsPost)
       .then((response) => response)
       .then((json) => {
-        var jsonAnsw = JSON.stringify(json)
         if (json.status === 200) {
           this.props.changeState({
             logedIn: true
@@ -143,26 +135,26 @@ class User extends React.Component {
     } else {
       return (
         <>
-          <section class="forms-section">
-            <div class="forms">
-              <div class="form-wrapper is-active">
+          <section className="forms-section">
+            <div className="forms">
+              <div className="form-wrapper is-active">
                 <button
                   type="button"
-                  class="switcher switcher-login"
+                  className="switcher switcher-login"
                   onClick={this.swap}
                 >
                   Login
-                  <span class="underline"></span>
+                  <span className="underline"></span>
                 </button>
                 <form
-                  class="form form-login"
+                  className="form form-login"
                   onSubmit={this.handleSubmitChangeLogin}
                 >
                   <fieldset>
                     <legend>
                       Please, enter your email and password for login.
                     </legend>
-                    <div class="input-block">
+                    <div className="input-block">
                       <label for="login-email">E-Mail or Username</label>
                       <input
                         id="login-email"
@@ -172,7 +164,7 @@ class User extends React.Component {
                         onChange={this.handleUsernameOrEmail}
                       />
                     </div>
-                    <div class="input-block">
+                    <div className="input-block">
                       <label for="login-password">Password</label>
                       <input
                         id="login-password"
@@ -183,18 +175,18 @@ class User extends React.Component {
                       />
                     </div>
                   </fieldset>
-                  <button type="submit" class="btn-login">
+                  <button type="submit" className="btn-login">
                     Login
                   </button>
                 </form>
               </div>
-              <div class="form-wrapper">
-                <button type="button" class="switcher switcher-signup">
+              <div className="form-wrapper">
+                <button type="button" className="switcher switcher-signup">
                   Sign Up
-                  <span class="underline"></span>
+                  <span className="underline"></span>
                 </button>
                 <form
-                  class="form form-signup"
+                  className="form form-signup"
                   onSubmit={this.handleSubmitChangeRegister}
                 >
                   <fieldset>
@@ -202,7 +194,7 @@ class User extends React.Component {
                       Please, enter your email, username, name and password for
                       sign up.
                     </legend>
-                    <div class="input-block">
+                    <div className="input-block">
                       <label for="signup-email">E-Mail</label>
                       <input
                         id="signup-email"
@@ -212,7 +204,7 @@ class User extends React.Component {
                         onChange={this.handleEmail}
                       />
                     </div>
-                    <div class="input-block">
+                    <div className="input-block">
                       <label for="signup-username">Username</label>
                       <input
                         id="signup-username"
@@ -222,7 +214,7 @@ class User extends React.Component {
                         onChange={this.handleUsername}
                       />
                     </div>
-                    <div class="input-block">
+                    <div className="input-block">
                       <label for="signup-name">Name</label>
                       <input
                         id="signup-name"
@@ -232,7 +224,7 @@ class User extends React.Component {
                         onChange={this.handleName}
                       />
                     </div>
-                    <div class="input-block">
+                    <div className="input-block">
                       <label for="signup-password">Password</label>
                       <input
                         id="signup-password"
@@ -242,7 +234,7 @@ class User extends React.Component {
                         onChange={this.handlePasswort}
                       />
                     </div>
-                    <div class="input-block" onChange={this.handleRole}>
+                    <div className="input-block" onChange={this.handleRole}>
                       <label for="Coach">Coach</label>
                       <input
                         name="select-rank"
@@ -261,7 +253,7 @@ class User extends React.Component {
                       />
                     </div>
                   </fieldset>
-                  <button type="submit" class="btn-signup">
+                  <button type="submit" className="btn-signup">
                     Continue
                   </button>
                 </form>

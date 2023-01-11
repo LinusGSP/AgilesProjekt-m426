@@ -1,6 +1,5 @@
 import logo from './Styles/Images/Logo.png'
 import React from 'react'
-import { Link } from 'react-router-dom'
 
 import './Styles/navBar.css'
 
@@ -14,15 +13,15 @@ class GlobalNavigation extends React.Component {
     return (
       <>
         <nav className='top'>
-            <div class="menu">
-                <img src={logo} className="log-img"></img>
-                <div class="menu_links">
-                    <a href="/" class="link">Home</a>
-                    <a href="/ProjectList" class="link">Projects</a>
-                    <a href="/User" class="link">User</a>
+            <div className="menu">
+                <img src={logo} alt="logo_image" className="log-img"></img>
+                <div className="menu_links">
+                    <a href="/" className="link">Home</a>
+                    <a href="/ProjectList" className="link">Projects</a>
+                    <a href="/User" className="link">User</a>
                 </div>
-                <div class="menu_icon" onClick={""}>
-                    <span class="icon"></span>
+                <div className="menu_icon" onClick={""}>
+                    <span className="icon"></span>
                 </div>
             </div>
             </nav>
