@@ -51,8 +51,20 @@ POST: http://127.0.0.1:8080/api/project/
         "date":"2022-01-01",
         "description":"Test Description",
         "status":"ACTIVE"
-        "coach":"Bob"
 }
 ```
 
 GET: http://127.0.0.1:8080/api/project/
+
+
+PUT: http://127.0.0.1:8080/api/project/update
+>Updates the Project and add's the current signed in User as Coach.
+
+```
+{
+        "name":"Test Project"
+        "date":"2022-01-01",
+        "description":"Test Description",
+        "status":"ACTIVE"
+}
+```
