@@ -34,6 +34,7 @@ class ProjectList extends React.Component {
     fetch('http://127.0.0.1:8080/api/project/', requestOptions)
       .then((response) => response.json())
       .then((data) => {
+        console.log(...data)
         this.setState({
           rows: data.map((o) => {
             return {
@@ -46,7 +47,7 @@ class ProjectList extends React.Component {
             }
           })
         })
-      })
+      }).then(console.log(this.state))
   }
 
   render() {
