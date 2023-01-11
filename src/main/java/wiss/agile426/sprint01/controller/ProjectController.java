@@ -47,6 +47,7 @@ public class ProjectController {
         return projectRepository.findByStatus(ACTIVE);
     }
 
+    @PreAuthorize("hasRole('ROLE_COACH')")
     @PutMapping(path = "/update")
     @ResponseBody
     public ResponseEntity<String> updateProject(@RequestBody Project newProject){
