@@ -10,12 +10,20 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<User, Integer> {
 
     Optional<User> findByEmail(String email);
+
     Optional<User> findByUsernameOrEmail(String username, String email);
+
     Optional<User> findByUsername(String username);
+
     @Query("SELECT CASE WHEN COUNT(u) > 0 THEN true ELSE false END FROM User u WHERE u.username = ?1")
     boolean existsByUsername(String username);
+
     @Query("SELECT CASE WHEN COUNT(u) > 0 THEN true ELSE false END FROM User u WHERE u.email = ?1")
     boolean existsByEmail(String email);
+
     @Query("SELECT id, email, name, username FROM User WHERE email = ?1")
     String findByEmailgetData(String email);
+
+    @Query("SELECT name FROM User WHERE email = ?1")
+    String findByEmailgetUsername(String email);
 }

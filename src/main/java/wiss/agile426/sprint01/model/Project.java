@@ -28,9 +28,9 @@ public class Project {
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = true)
-    @JoinColumn(name = "coach", nullable = true)
-    public User coach;
+  // coach object from user
+    @Column(name = "coach")
+    private String coach;
 
     //Setter
     public void setId(long id) {
@@ -45,7 +45,8 @@ public class Project {
     public void setStatus(Status status) {
         this.status = status;
     }
-    public void setCoach(User coach) {
+    public void setCoach(String coach) {
+        // set user name from user object
         this.coach = coach;
     }
     public void setName(String name) {
@@ -65,7 +66,7 @@ public class Project {
     public String getStatus(){
         return status.toString();
     }
-    public User getCoach() {
+    public String getCoach() {
         return coach;
     }
     public String getName() {

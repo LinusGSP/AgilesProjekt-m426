@@ -3,6 +3,7 @@ package wiss.agile426.sprint01.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import wiss.agile426.sprint01.repository.UserRepository;
 
@@ -20,4 +21,11 @@ public class UserController {
         return userRepository.findByEmailgetData(email);
     }
 
+    @RequestMapping(value = "/name", method = RequestMethod.GET)
+    @ResponseBody
+    public String currentUserName(Authentication authentication) {
+
+        return userRepository.findByEmailgetData(authentication.getName());
+
+    }
 }

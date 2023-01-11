@@ -2,9 +2,13 @@ package wiss.agile426.sprint01.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import wiss.agile426.sprint01.Sprint01Application;
 import wiss.agile426.sprint01.model.Project;
+import wiss.agile426.sprint01.model.User;
 import wiss.agile426.sprint01.repository.ProjectRepository;
 import wiss.agile426.sprint01.repository.UserRepository;
 
@@ -19,7 +23,12 @@ public class ProjectController {
     Sprint01Application application;
 
     @Autowired
+    private AuthenticationManager authenticationManager;
+
+    @Autowired
     private ProjectRepository projectRepository;
+
+    @Autowired
     private UserRepository userRepository;
 
     @PostMapping(path = "")
@@ -37,13 +46,17 @@ public class ProjectController {
         return projectRepository.findByStatus(ACTIVE);
     }
 
-    @PutMapping(path = "")
-    public @ResponseBody ResponseEntity<String> updateProject(@RequestBody Project newProject){
-        Project project = projectRepository.findById(newProject.id).get(0);
-        
-        project.setCoach(newProject.coach);
+    @PutMapping(path = "/update")
+    @ResponseBody
+    public String updateProject(@RequestBody Project newProject){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Project project = projectRepository.findById(newProject.id);
+        String coach = auth.getName();
+        User user = userRepository.findByEmail(coach).orElseThrow(Error::new);
 
-        return ResponseEntity.status(200).body("Successfully addet a Coach to Project: " + newProject.id + "---"+ newProject.name+". New Coach:" + projectRepository.findById(newProject.coach.id).get(0).getId());
+        project.setCoach(user.getUsername());
+
+        return project.getCoach();
     }
 
 }
