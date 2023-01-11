@@ -1,0 +1,17 @@
+form div{
+    float:left;
+    width:50%;
+}
+
+input, label{
+    display:block;
+    width:85%;
+}
+input{
+    background-color: rgb(223, 223, 223);
+}
+
+textarea {
+    background-color: rgb(223, 223, 223);
+    width: 100%;
+}
