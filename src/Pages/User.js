@@ -11,8 +11,8 @@ class User extends React.Component {
     this.handleEmail = this.handleEmail.bind(this)
     this.handleName = this.handleName.bind(this)
     this.handleUsername = this.handleUsername.bind(this)
-    this.handlePasswort = this.handlePasswort.bind(this)
     this.handleUsernameOrEmail = this.handleUsernameOrEmail.bind(this)
+    this.handlePasswort = this.handlePasswort.bind(this)
     this.handleRole = this.handleRole.bind(this)
 
     this.handleSubmitChangeLogin = this.handleSubmitChangeLogin.bind(this)
@@ -69,7 +69,7 @@ class User extends React.Component {
 
     const requestOptions = {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json'},
       body: JSON.stringify(this.state),
     }
     fetch('http://127.0.0.1:8080/api/auth/signup', requestOptions)
@@ -89,25 +89,37 @@ class User extends React.Component {
   handleSubmitChangeLogin(event) {
     event.preventDefault();
 
-    const requestOptionsPost = {
+    const requestOptions = {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(this.state),
+      withCredentials: 'true', 
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Credentials': 'true',
+        'Access-Control-Allow-Origin': 'http://localhost:3000',
+        'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+        'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept, Authorization, Access-Control-Allow-Credentials',
+      },
+      body: JSON.stringify({
+        usernameOrEmail: this.state.usernameOrEmail,
+        password: this.state.password,
+      }),
     }
-
-    fetch('http://127.0.0.1:8080/api/auth/signin', requestOptionsPost)
+    fetch('http://127.0.0.1:8080/api/auth/signin', requestOptions)
       .then((response) => response)
       .then((json) => {
         if (json.status === 200) {
-          this.props.changeState({
-            logedIn: true
-          })
+          alert('You are now logged in')
+          this.props.appState.logedIn = true
+          this.props.appState.username = this.state.usernameOrEmail
+        } else if (json.status === 500) {
+          alert('Internal Server Error. Try again or contact the support')
         }
-        else{
-          alert("An error Occurred. Unfortunately we aren't able to help you...")
-        }
+        const test = JSON.stringify(this.state)
+        alert(test)
       })
   }
+  
+      
   //Needs udate
   swap = () => {
     const switchers = [...document.querySelectorAll('.switcher')]

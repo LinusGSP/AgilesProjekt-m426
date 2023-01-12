@@ -16,16 +16,20 @@ const handleRowCLick = (params) => {
     function updateProject() {
       const requestOptions = {
         method: 'PUT',
+        withCredentials: 'true', 
         headers: {
           'Content-Type': 'application/json',
-          'Acces-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Credentials': 'true',
+          'Access-Control-Allow-Origin': 'http://localhost:3000',
+          'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+          'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept, Authorization, Access-Control-Allow-Credentials',
         },
         body: JSON.stringify({
-          id: params.id,
-          name: params.name,
-          description: params.description,
-          date: params.date,
-          status: params.status,
+          id: 4,
+          name: "testproj",
+          description: "Test Description",
+          date: "2022-01-01",
+          status: "ACTIVE"
         })
       }
       fetch('http://127.0.0.1:8080/api/project/update', requestOptions)
