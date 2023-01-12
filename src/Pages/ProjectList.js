@@ -42,12 +42,12 @@ class ProjectList extends React.Component {
         this.setState({
           rows: data.map((o) => {
             return {
-              coach: o.coach.name,
               date: o.date,
               description: o.description,
               id: o.id,
               name: o.name,
-              status: o.status
+              status: o.status,
+              coach: o.coach
             }
           })
         })
