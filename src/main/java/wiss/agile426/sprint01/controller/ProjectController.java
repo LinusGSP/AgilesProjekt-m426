@@ -17,7 +17,7 @@ import javax.validation.Valid;
 
 import static wiss.agile426.sprint01.model.Project.Status.*;
 
-@CrossOrigin
+@CrossOrigin()
 @RestController
 @RequestMapping(path = "/api/project/")
 public class ProjectController {
@@ -47,21 +47,24 @@ public class ProjectController {
         return projectRepository.findByStatus(ACTIVE);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000",allowCredentials = "true")
     @PutMapping(path = "/update")
     @ResponseBody
     public ResponseEntity<String> updateProject(@RequestBody Project newProject){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Project project = projectRepository.findById(newProject.id);
         String coach = auth.getName();
-        User user = userRepository.findByEmail(coach).orElseThrow(Error::new);
+        if(project.getCoach().equals(coach)){
+            projectRepository.save(newProject);
+            return ResponseEntity.status(200).body("Project was successfully updated");
+        }
 
         project.setName(newProject.getName());
         project.setDescription(newProject.getDescription());
         project.setDate(newProject.getDate());
         project.setStatus(newProject.getStatus());
-        project.setCoach(user.getUsername());
         projectRepository.save(project);
 
-        return ResponseEntity.accepted().body("Thank you " + user.getUsername() + " for signing up to coach " + project.getName());
+        return ResponseEntity.accepted().body("Thank you " + coach + " for signing up to coach " + project.getName());
     }
 }
