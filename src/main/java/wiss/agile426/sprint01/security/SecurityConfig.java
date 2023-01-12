@@ -45,6 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout(logout -> logout
                         .logoutUrl("/api/auth/logout")
+                        .clearAuthentication(true)
                         .logoutSuccessUrl("/api/")
                 );
     }
