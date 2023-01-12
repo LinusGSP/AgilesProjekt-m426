@@ -23,7 +23,7 @@ const handleRowCLick = (params) => {
 const renderDetailsButton = (params) => {
   return (
     <strong>
-      <button style={{ padding: "10px" }} onClick={handleRowCLick}>My name jeff</button>
+      <button style={{ padding: "10px" }} onClick={handleRowCLick}>SignUp as Coach</button>
     </strong >
   )
 }
@@ -62,8 +62,8 @@ const columns = [
     editable: false,
   },
   {
-    field: 'hahahah',
-    headerName: 'lombok virus',
+    field: 'edit',
+    headerName: 'Accept',
     width: 100,
     renderCell: renderDetailsButton,
     disableClickEventBubbling: true,
