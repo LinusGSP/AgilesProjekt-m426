@@ -12,10 +12,15 @@ function ModalDialog() {
     return invokeModal(false)
   }
   const addProject = () => {
+    var name = document.getElementById("name"),
+      date = document.getElementById('date'),
+      description = document.getElementById('desc');
+    window.alert("Adding following Project: " + name.value +" "+date.value+" "+description.value);
+
+
     /**
      * FETCH TO ADD PROJECT
      */
-
     return invokeModal(false)
   }
   return (
@@ -28,17 +33,17 @@ function ModalDialog() {
           <Modal.Title>Add new project</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <form>
-            <div>
+          <form className="addProject-form">
+            <div className='addProject-div'>
               <label for="name">Project Name:</label>
               <input type="text" id="name" name="name" />
             </div>
-            <div>
+            <div className='addProject-div'>
               <label for="date">Datum:</label>
               <input type="date" id="date" name="date" />
             </div>
-            <label for="desc">Description:</label>
-            <textarea id="desc" name="desc" />
+              <label for="desc">Description:</label>
+              <textarea id="desc" name="desc" className='addProject-textarea'/>
           </form>
         </Modal.Body>
         <Modal.Footer>

@@ -96,8 +96,8 @@ class User extends React.Component {
         
       },
       body: JSON.stringify({
-        usernameOrEmail: "test2",
-        password: "test2",
+        usernameOrEmail: this.state.usernameOrEmail,
+        password: this.state.password,
       }),
     }
     fetch('http://127.0.0.1:8080/api/auth/signin', requestOptionsPost)
@@ -251,7 +251,7 @@ class User extends React.Component {
                         required
                         value="ROLE_COACH"
                       />
-                      <label for="Anbieter">Typ</label>
+                      <label for="Anbieter">Owner</label>
                       <input
                         name="select-rank"
                         id="Anbieter"

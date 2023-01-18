@@ -1,17 +1,17 @@
-form div{
+.addProject-form div{
     float:left;
     width:50%;
 }
 
-input, label{
+.addProject-div input, .addProject-div label{
     display:block;
     width:85%;
 }
-input{
+.addProject-div input{
     background-color: rgb(223, 223, 223);
 }
 
-textarea {
+.addProject-textarea {
     background-color: rgb(223, 223, 223);
     width: 100%;
 }

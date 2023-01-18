@@ -1,7 +1,6 @@
 import * as React from 'react'
 
 import Box from '@mui/material/Box'
-import Alert from '@mui/material/Alert'
 import { DataGrid } from '@mui/x-data-grid'
 
 
@@ -22,7 +21,7 @@ const handleRowCLick = (params) => {
           'Access-Control-Allow-Credentials': 'true'
         },
         body: JSON.stringify({
-          id: 5,
+          id: 8,
           name: "testproj",
           status: "ACTIVE"
         })
@@ -43,7 +42,7 @@ const handleRowCLick = (params) => {
 const renderDetailsButton = (params) => {
   return (
     <strong>
-      <button style={{ padding: "10px" }} onClick={handleRowCLick}>SignUp as Coach</button>
+      <button style={{ padding: "10px" }} onClick={handleRowCLick}>Sign-Up</button>
     </strong >
   )
 }
@@ -83,7 +82,7 @@ const columns = [
   },
   {
     field: 'edit',
-    headerName: 'Accept',
+    headerName: 'Actiions',
     width: 100,
     renderCell: renderDetailsButton,
     disableClickEventBubbling: true,
