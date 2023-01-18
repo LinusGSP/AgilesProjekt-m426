@@ -89,22 +89,18 @@ class User extends React.Component {
   handleSubmitChangeLogin(event) {
     event.preventDefault();
 
-    const requestOptions = {
-      method: 'POST',
-      withCredentials: 'true', 
+    const requestOptionsPost = {
+      method: 'POST', 
       headers: {
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Credentials': 'true',
-        'Access-Control-Allow-Origin': 'http://localhost:3000',
-        'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-        'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept, Authorization, Access-Control-Allow-Credentials',
+        
       },
       body: JSON.stringify({
-        usernameOrEmail: this.state.usernameOrEmail,
-        password: this.state.password,
+        usernameOrEmail: "test2",
+        password: "test2",
       }),
     }
-    fetch('http://127.0.0.1:8080/api/auth/signin', requestOptions)
+    fetch('http://127.0.0.1:8080/api/auth/signin', requestOptionsPost)
       .then((response) => response)
       .then((json) => {
         if (json.status === 200) {

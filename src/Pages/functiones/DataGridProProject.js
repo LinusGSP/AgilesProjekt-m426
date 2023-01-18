@@ -16,19 +16,14 @@ const handleRowCLick = (params) => {
     function updateProject() {
       const requestOptions = {
         method: 'PUT',
-        withCredentials: 'true', 
+        credentials: 'same-origin', 
         headers: {
           'Content-Type': 'application/json',
-          'Access-Control-Allow-Credentials': 'true',
-          'Access-Control-Allow-Origin': 'http://localhost:3000',
-          'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-          'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept, Authorization, Access-Control-Allow-Credentials',
+          'Access-Control-Allow-Credentials': 'true'
         },
         body: JSON.stringify({
-          id: 4,
+          id: 5,
           name: "testproj",
-          description: "Test Description",
-          date: "2022-01-01",
           status: "ACTIVE"
         })
       }
